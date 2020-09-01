@@ -26,10 +26,18 @@ First obtain the code by cloning the Git repository:
 - $ cd confluent-windows-5.3.1
 
 
-## Running Confluent
+## Running Confluent in single command
 
 - cd confluent-windows-5.3.1/bin/windows
 - confluent.bat
+
+## Running Confluent services separately
+
+- cd confluent-windows-5.3.1/bin/windows
+- zookeeper-start.bat
+- kafka-start.bat
+- schema-registry-start.bat
+- worker-start.bat
 
 ### Services started :->
 
@@ -51,4 +59,21 @@ First obtain the code by cloning the Git repository:
 
 - cd confluent-windows-5.3.1/bin/windows
 - confluent-reset.bat
+
+## Start Console Consumer
+- cd confluent-windows-5.3.1/bin/windows
+- kafka-console-consumer.bat \ --bootstrap-server localhost:9092 --topic test
+
+## Start Console Producer
+
+- cd confluent-windows-5.3.1/bin/windows
+- kafka-console-producer.bat \ --broker-list localhost:9092 --topic test --property "parse.key=true" --property "key.separator=:"
+
+## Producer sample data to kafka
+- 1:{"this is first message"}
+- 2:{"this is second message"}
+- 3:{"this is third message"}
+
+
+
 

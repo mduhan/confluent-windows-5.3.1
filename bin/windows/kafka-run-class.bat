@@ -99,6 +99,7 @@ for %%i in ("%BASE_DIR%\core\build\libs\kafka_%SCALA_BINARY_VERSION%*.jar") do (
 	call :concat "%%i"
 )
 
+set CLASSPATH=%BASE_DIR%\config;%BASE_DIR%\share\java\kafka\*;%BASE_DIR%\share\java\confluent-common\*;%BASE_DIR%\share\java\schema-registry\*;%BASE_DIR%\share\java\kafka-connect-mongo\*;%BASE_DIR%\share\java\kafka-connect-elasticsearch\*;%BASE_DIR%\share\java\kafka-connect-s3\*;%BASE_DIR%\share\java\kafka-connect-storage-common\*;.
 rem JMX settings
 IF ["%KAFKA_JMX_OPTS%"] EQU [""] (
 	set KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false
@@ -113,7 +114,7 @@ rem Log directory to use
 IF ["%LOG_DIR%"] EQU [""] (
     set LOG_DIR=%BASE_DIR%/logs
 )
-
+set KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:%BASE_DIR%/config/tools-log4j.properties
 rem Log4j settings
 IF ["%KAFKA_LOG4J_OPTS%"] EQU [""] (
 	if exist %~dp0../../etc/kafka/tools-log4j.properties (
